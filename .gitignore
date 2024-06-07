@@ -13,6 +13,7 @@
 
 vr2/Library/
 *.mp4
+*.resource
 
 
 # MemoryCaptures can get excessive in size.
