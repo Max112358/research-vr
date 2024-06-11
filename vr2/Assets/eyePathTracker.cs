@@ -21,9 +21,10 @@ public class eyePathTracker : MonoBehaviour
     public string folderPath = "Assets/GeneratedImages/";
 
     // Size of the dot (radius)
-    public int dotSize = 50;
+    public int dotSize = 4;
 
     public Vector2[] vectorArray;
+    private int loopCount = 0;
 
 
 
@@ -36,7 +37,7 @@ public class eyePathTracker : MonoBehaviour
         // Assuming you have a reference to the camera transform
         transformOfObjectThisIsAttachedTo = GetComponent<Transform>();
 
-        GenerateAndSaveImage(imageWidth, imageHeight, dotX, dotY, dotSize, folderPath);
+        //GenerateAndSaveImage(imageWidth, imageHeight, dotX, dotY, dotSize, folderPath);
     }
 
     // Update is called once per frame
@@ -56,6 +57,23 @@ public class eyePathTracker : MonoBehaviour
         float mappedY = imageCoordinates.y;
         //Debug.Log("x: " + mappedX + " y: " + mappedY);
 
+        vectorArray[loopCount] = imageCoordinates;
+        loopCount++;
+        if (loopCount > 299)
+        {
+            loopCount = 0;
+
+        }
+
+    }
+
+    private void drawPath()
+    {
+        for (int i = 0; i < vector2Array.Length; i++)
+        {
+            Vector2 currentVector = vector2Array[i];
+            Debug.Log("Element " + i + ": (" + currentVector.x + ", " + currentVector.y + ")");
+        }
     }
 
 
