@@ -14,16 +14,14 @@ public class eyePathTracker : MonoBehaviour
     public int XOffset = 0;
     public int YOffset = 0;
 
-    // Specify the coordinates for the black dot
-    public int dotX = 256;
-    public int dotY = 256;
-
-    public string folderPath = "Assets/GeneratedImages/";
+    private string folderPath = "Assets/GeneratedImages/";
+    private string filePath = "Assets/GeneratedPath/path.txt";
 
     // Size of the dot (radius)
     public int dotSize = 4;
 
-    public Vector2[] vectorArray;
+    private int arraySize = 300;
+    private Vector2[] vectorArray;
     private int loopCount = 0;
 
 
@@ -32,7 +30,7 @@ public class eyePathTracker : MonoBehaviour
     void Start()
     {
 
-        vectorArray = new Vector2[300];
+        vectorArray = new Vector2[arraySize];
 
         // Assuming you have a reference to the camera transform
         transformOfObjectThisIsAttachedTo = GetComponent<Transform>();
@@ -59,21 +57,46 @@ public class eyePathTracker : MonoBehaviour
 
         vectorArray[loopCount] = imageCoordinates;
         loopCount++;
-        if (loopCount > 299)
+        if (loopCount > arraySize - 1)
         {
             loopCount = 0;
-
+            //drawPath(); too laggy
+            exportPath();
         }
 
     }
 
     private void drawPath()
     {
-        for (int i = 0; i < vector2Array.Length; i++)
+        for (int i = 0; i < vectorArray.Length; i++)
         {
-            Vector2 currentVector = vector2Array[i];
-            Debug.Log("Element " + i + ": (" + currentVector.x + ", " + currentVector.y + ")");
+            Vector2 currentVector = vectorArray[i];
+            GenerateAndSaveImage(imageWidth, imageHeight, (int)vectorArray[i].x, (int)vectorArray[i].y, dotSize, folderPath);
+            //Debug.Log("Element " + i + ": (" + currentVector.x + ", " + currentVector.y + ")");
         }
+    }
+
+    private void exportPath()
+    {
+        // Create a StreamWriter to write text to a file
+        //StreamWriter writer = new StreamWriter(filePath);
+
+        bool appendToFile = true;
+        StreamWriter writer = new StreamWriter(filePath, appendToFile);
+
+        for (int i = 0; i < vectorArray.Length; i++)
+        {
+            Vector2 currentVector = vectorArray[i];
+
+            //GenerateAndSaveImage(imageWidth, imageHeight, (int)vectorArray[i].x, (int)vectorArray[i].y, dotSize, folderPath);
+            //Debug.Log("Element " + i + ": (" + currentVector.x + ", " + currentVector.y + ")");\
+            writer.WriteLine(currentVector.x + " " + currentVector.y);
+
+        }
+
+        writer.Close();
+
+        Debug.Log("Vector2 array exported to: " + filePath);
     }
 
 
@@ -96,57 +119,49 @@ public class eyePathTracker : MonoBehaviour
 
     void GenerateAndSaveImage(int width, int height, int dotX, int dotY, int dotRadius, string folderPath)
     {
-
         dotY = height - dotY;
 
-
-        // Create a new texture with the specified width and height
-        Texture2D texture = new Texture2D(width, height);
-
-        // Fill the texture with a transparent color
-        Color32[] pixels = texture.GetPixels32();
-        for (int i = 0; i < pixels.Length; i++)
+        // Create or load the existing texture
+        Texture2D texture;
+        string filePath = Path.Combine(folderPath, "generated_image.png");
+        if (File.Exists(filePath))
         {
-            pixels[i] = Color.clear;
+            byte[] existingBytes = File.ReadAllBytes(filePath);
+            texture = new Texture2D(width, height);
+            texture.LoadImage(existingBytes); // Load existing image
         }
-        texture.SetPixels32(pixels);
+        else
+        {
+            // Create a new texture if no existing image found
+            texture = new Texture2D(width, height);
+        }
 
         // Draw a black dot at the specified coordinates
+        Color32[] pixels = texture.GetPixels32();
         for (int x = dotX - (dotRadius / 2); x <= dotX + dotRadius / 2; x++)
         {
             for (int y = dotY - dotRadius / 2; y <= dotY + dotRadius / 2; y++)
             {
-                if (x >= 0 && x < imageWidth && y >= 0 && y < imageHeight)
+                if (x >= 0 && x < width && y >= 0 && y < height)
                 {
-                    texture.SetPixel(x, y, Color.black);
-                    Debug.Log("x: " + x + "y: " + y);
+                    // Only draw if the pixel is within the bounds of the texture
+                    int index = y * width + x;
+                    pixels[index] = Color.black; // Draw black dot
                 }
             }
         }
 
-
-
         // Apply the changes to the texture
+        texture.SetPixels32(pixels);
         texture.Apply();
 
         // Encode the texture as a PNG
         byte[] pngBytes = texture.EncodeToPNG();
 
-        // Create the folder if it doesn't exist
-        if (!Directory.Exists(folderPath))
-        {
-            Directory.CreateDirectory(folderPath);
-        }
-
         // Save the PNG file to the specified folder
-        string filePath = Path.Combine(folderPath, "generated_image.png");
         File.WriteAllBytes(filePath, pngBytes);
 
-        // Clean up the texture
-        Destroy(texture);
-
         Debug.Log("Image generated and saved to: " + filePath);
-
-
     }
+
 }

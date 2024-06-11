@@ -44,6 +44,6 @@ def convert_360_to_panoramic(video_path, output_folder):
     print(f"Converted {frame_count} frames to panoramic screenshots.")
 
 # Example usage
-video_path = "input.mp4"
+video_path = "VID_20240607_103240_00_006.mp4"
 output_folder = "panoramic_screenshots"
 convert_360_to_panoramic(video_path, output_folder)

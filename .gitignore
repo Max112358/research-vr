@@ -12,6 +12,7 @@
 
 
 vr2/Library/
+vr2/Temp/
 *.mp4
 *.resource
 
