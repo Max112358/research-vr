@@ -18,7 +18,7 @@ public class eyePathTracker : MonoBehaviour
     private string filePath = "Assets/GeneratedPath/path.txt";
 
     // Size of the dot (radius)
-    public int dotSize = 4;
+    private int dotSize = 4;
 
     private int arraySize = 300;
     private Vector2[] vectorArray;
@@ -34,6 +34,13 @@ public class eyePathTracker : MonoBehaviour
 
         // Assuming you have a reference to the camera transform
         transformOfObjectThisIsAttachedTo = GetComponent<Transform>();
+
+        // Check if the file exists
+        if (File.Exists(filePath))
+        {
+            // Delete the file
+            File.Delete(filePath);
+        }
 
         //GenerateAndSaveImage(imageWidth, imageHeight, dotX, dotY, dotSize, folderPath);
     }

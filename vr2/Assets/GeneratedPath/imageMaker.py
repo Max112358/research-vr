@@ -32,4 +32,4 @@ output_path = 'output_with_dots.png'
 plt.savefig(output_path, bbox_inches='tight', pad_inches=0, transparent=True)
 
 # Display the plot if you want
-plt.show()
+#plt.show()

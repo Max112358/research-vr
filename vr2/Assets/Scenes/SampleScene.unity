@@ -229,9 +229,9 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11733648}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &135752824 stripped
+--- !u!1 &131579460 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 3462571325970164595, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2871854915733156399, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
   m_PrefabInstance: {fileID: 1825262782}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &216635987
@@ -344,6 +344,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2871854915733156396, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
   m_PrefabInstance: {fileID: 1825262782}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &275820395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131579460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 551642186c043f14f8c5f62a4c5bc8bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageWidth: 3840
+  imageHeight: 960
+  XOffset: 960
+  YOffset: 0
 --- !u!1 &373915071
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,7 +876,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1251135226}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 4a800d7ae3558a74dba9063ed23ebc5c, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 3103a5d73d3bb1648a98352112f8b5bc, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -993,27 +1009,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1444613213}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1542073246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 135752824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 551642186c043f14f8c5f62a4c5bc8bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  imageWidth: 3840
-  imageHeight: 960
-  XOffset: 960
-  YOffset: 0
-  dotX: 256
-  dotY: 256
-  folderPath: Assets/GeneratedImages/
-  dotSize: 50
-  vectorArray: []
 --- !u!1 &1548251155
 GameObject:
   m_ObjectHideFlags: 0
@@ -1438,7 +1433,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 1e-45, z: 1.4309e-41, w: 9.403955e-38}
+  m_BoundingSphereOverride: {x: 4.5904e-41, y: -1.0242216e-30, z: 4.5904e-41, w: 9.403955e-38}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -1759,9 +1754,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 373915072}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3462571325970164595, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 2871854915733156399, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1542073246}
+      addedObject: {fileID: 275820395}
   m_SourcePrefab: {fileID: 100100000, guid: 65eb6b98091a5734ba9d9ca871cef69a, type: 3}
 --- !u!1 &2046629158
 GameObject:
