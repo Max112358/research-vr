@@ -14,8 +14,7 @@ public class eyePathTracker : MonoBehaviour
     public int XOffset = 0;
     public int YOffset = 0;
 
-    private string folderPath = "Assets/GeneratedImages/";
-    private string filePath = "Assets/GeneratedPath/path.txt";
+    public string filePath = "Assets/GeneratedPath/path.txt";
 
     // Size of the dot (radius)
     private int dotSize = 4;
@@ -73,15 +72,6 @@ public class eyePathTracker : MonoBehaviour
 
     }
 
-    private void drawPath()
-    {
-        for (int i = 0; i < vectorArray.Length; i++)
-        {
-            Vector2 currentVector = vectorArray[i];
-            GenerateAndSaveImage(imageWidth, imageHeight, (int)vectorArray[i].x, (int)vectorArray[i].y, dotSize, folderPath);
-            //Debug.Log("Element " + i + ": (" + currentVector.x + ", " + currentVector.y + ")");
-        }
-    }
 
     private void exportPath()
     {
@@ -103,7 +93,7 @@ public class eyePathTracker : MonoBehaviour
 
         writer.Close();
 
-        Debug.Log("Vector2 array exported to: " + filePath);
+        //Debug.Log("Vector2 array exported to: " + filePath);
     }
 
 
@@ -122,53 +112,6 @@ public class eyePathTracker : MonoBehaviour
         float y = (normalizedY * imageHeight + YOffset) % imageHeight;
 
         return new Vector2(x, y);
-    }
-
-    void GenerateAndSaveImage(int width, int height, int dotX, int dotY, int dotRadius, string folderPath)
-    {
-        dotY = height - dotY;
-
-        // Create or load the existing texture
-        Texture2D texture;
-        string filePath = Path.Combine(folderPath, "generated_image.png");
-        if (File.Exists(filePath))
-        {
-            byte[] existingBytes = File.ReadAllBytes(filePath);
-            texture = new Texture2D(width, height);
-            texture.LoadImage(existingBytes); // Load existing image
-        }
-        else
-        {
-            // Create a new texture if no existing image found
-            texture = new Texture2D(width, height);
-        }
-
-        // Draw a black dot at the specified coordinates
-        Color32[] pixels = texture.GetPixels32();
-        for (int x = dotX - (dotRadius / 2); x <= dotX + dotRadius / 2; x++)
-        {
-            for (int y = dotY - dotRadius / 2; y <= dotY + dotRadius / 2; y++)
-            {
-                if (x >= 0 && x < width && y >= 0 && y < height)
-                {
-                    // Only draw if the pixel is within the bounds of the texture
-                    int index = y * width + x;
-                    pixels[index] = Color.black; // Draw black dot
-                }
-            }
-        }
-
-        // Apply the changes to the texture
-        texture.SetPixels32(pixels);
-        texture.Apply();
-
-        // Encode the texture as a PNG
-        byte[] pngBytes = texture.EncodeToPNG();
-
-        // Save the PNG file to the specified folder
-        File.WriteAllBytes(filePath, pngBytes);
-
-        Debug.Log("Image generated and saved to: " + filePath);
     }
 
 }
