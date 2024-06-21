@@ -1,0 +1,34 @@
+{
+    "name": "customControllerMappings",
+    "maps": [
+        {
+            "name": "XRController",
+            "id": "f445399d-2c21-432e-a641-2179fb87c0b9",
+            "actions": [
+                {
+                    "name": "AButton",
+                    "type": "Button",
+                    "id": "6422c9b5-5e29-466c-9ff1-713db4798ed0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a3e0e16b-39bd-4357-9fe2-5ff679c0a159",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
