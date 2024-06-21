@@ -55,20 +55,23 @@ public class RaycastChecker : MonoBehaviour
 
 
                 AddOrAccumulate(objectScores, objectName, 1);
+                displayText.text = objectName;
 
 
                 //attentionCount += 1;
-                
+
             }
             else
             {
                 AddOrAccumulate(objectScores, "Nothing", 1);
+                displayText.text = "Nothing";
             }
         }
         else
         {
             // Increment inAttentionCount if the raycast does not hit anything
             AddOrAccumulate(objectScores, "Nothing", 1);
+            displayText.text = "Nothing";
         }
 
         // Ensure that both attentionCount and inAttentionCount are floats for the division
@@ -79,17 +82,13 @@ public class RaycastChecker : MonoBehaviour
 
 
 
-
+        /*
         int totalScore = 1;
-
         // Loop through the dictionary and sum the values
         foreach (KeyValuePair<string, int> kvp in objectScores)
         {
             totalScore += kvp.Value;
         }
-
-
-
 
         string key = "instruction surface";
         if (objectScores.ContainsKey(key))
@@ -100,14 +99,13 @@ public class RaycastChecker : MonoBehaviour
             float finalRatio = (float)value / totalScore;
             string ratioString = finalRatio.ToString("F2"); // Format the ratio to 2 decimal places
             displayText.text = ratioString;
-
         }
         else
         {
             //Debug.Log("Key '" + key + "' not found in the dictionary.");
             displayText.text = "0";
         }
-
+        */
 
 
 
@@ -118,7 +116,7 @@ public class RaycastChecker : MonoBehaviour
         // Perform your custom actions here
         //Debug.Log("Application is quitting!");
         // Example: Save game state
-        PrintDictionary(objectScores);
+        //PrintDictionary(objectScores);
 
 
         // Print the dictionary to the file
@@ -165,13 +163,25 @@ public class RaycastChecker : MonoBehaviour
 
     void PrintDictionaryToFile(Dictionary<string, int> dictionary, string path)
     {
+        int totalScore = 1;
+        // Loop through the dictionary and sum the values
+        foreach (KeyValuePair<string, int> kvp in objectScores)
+        {
+            totalScore += kvp.Value;
+        }
+
         using (StreamWriter writer = new StreamWriter(path))
         {
             foreach (KeyValuePair<string, int> kvp in dictionary)
             {
-                writer.WriteLine(kvp.Key + ": " + kvp.Value);
+                // Calculate the fraction as a percentage
+                double fraction = (double)kvp.Value / totalScore * 100;
+
+                writer.WriteLine($"{kvp.Key}: {kvp.Value} ({fraction:F2}%)");
             }
         }
+
         Debug.Log("Dictionary written to " + path);
     }
+
 }

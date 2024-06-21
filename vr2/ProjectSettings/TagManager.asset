@@ -5,9 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Anchor
-  - TargetQuad
   - displayText
   - visualTarget
+  - timerText
   layers:
   - Default
   - TransparentFX

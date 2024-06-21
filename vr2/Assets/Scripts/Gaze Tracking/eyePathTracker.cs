@@ -18,9 +18,6 @@ public class eyePathTracker : MonoBehaviour
     public string filePathStart = "Assets/GeneratedPath/";
     private string filePath;
 
-    // Size of the dot (radius)
-    private int dotSize = 4;
-
     private int arraySize = 300;
     private Vector2[] vectorArray;
     private int loopCount = 0;

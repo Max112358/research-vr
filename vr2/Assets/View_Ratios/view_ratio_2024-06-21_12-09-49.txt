@@ -1,0 +1,3 @@
+instruction surface: 1162
+Nothing: 2895
+fallen pen: 450

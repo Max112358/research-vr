@@ -1,0 +1,4 @@
+instruction surface: 2251
+Nothing: 7595
+fallen pen: 450
+tapping pen: 678
