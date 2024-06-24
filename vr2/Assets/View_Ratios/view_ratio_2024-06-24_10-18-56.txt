@@ -1,0 +1,3 @@
+instruction surface: 520 (23.95%)
+Nothing: 1495 (68.86%)
+fallen pen: 155 (7.14%)

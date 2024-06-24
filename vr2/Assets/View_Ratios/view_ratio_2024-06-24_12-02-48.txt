@@ -1,0 +1,2 @@
+instruction surface: 1 (0.15%)
+Nothing: 662 (99.70%)
