@@ -1,0 +1,3 @@
+instruction surface: 5 (0.05%)
+Nothing: 10070 (99.79%)
+tapping pen: 15 (0.15%)

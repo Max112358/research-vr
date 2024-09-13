@@ -22,11 +22,17 @@ public class eyePathTracker : MonoBehaviour
     private Vector2[] vectorArray;
     private int loopCount = 0;
 
+    string eyeName;
+
+
 
 
     // Start is called before the first frame update
     void Start()
     {
+
+        eyeName = gameObject.name;
+
 
         vectorArray = new Vector2[arraySize];
 
@@ -35,7 +41,7 @@ public class eyePathTracker : MonoBehaviour
 
 
         string dateTime = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
-        string fileName = "eye_path_" + dateTime + ".txt";
+        string fileName = "eye_path_" + eyeName + "_" + dateTime + ".txt";
         filePath = (filePathStart + fileName);
         Debug.Log("filePath: " + filePath);
 
